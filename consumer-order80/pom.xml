@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>provider-payment-8001</artifactId>
+    <artifactId>consumer-order80</artifactId>
 
     <dependencies>
         <dependency>
@@ -87,6 +87,5 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>
