@@ -1,0 +1,16 @@
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-order-service
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db2019?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 12345678
+  cloud:
+    zookeeper:
+      connect-string: 39.98.68.111:2181,39.98.68.111:2182,39.98.68.111:2183
