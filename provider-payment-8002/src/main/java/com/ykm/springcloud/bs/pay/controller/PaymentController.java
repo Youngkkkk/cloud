@@ -1,6 +1,7 @@
 package com.ykm.springcloud.bs.pay.controller;
 
 
+import com.netflix.loadbalancer.IRule;
 import com.ykm.springcloud.bs.pay.entity.Payment;
 import com.ykm.springcloud.bs.pay.service.IPaymentService;
 import com.ykm.springcloud.dto.PaymentDTO;
@@ -42,9 +43,12 @@ public class PaymentController {
     @GetMapping("get/{id}")
     @ApiOperation("根据id查询")
     public PaymentDTO get(@PathVariable("id") Long id) {
+        IRule
         Payment payment = iPaymentService.getById(id);
         log.info("serverPort:{}", serverPort);
-        return BeanHelperUtil.convert(payment, new PaymentDTO());
+        PaymentDTO paymentDTO = BeanHelperUtil.convert(payment, new PaymentDTO());
+        paymentDTO.setModel(serverPort);
+        return paymentDTO;
     }
 
     @PostMapping("removeById")

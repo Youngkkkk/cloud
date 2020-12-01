@@ -9,13 +9,15 @@ import java.io.Serializable;
  * @date 2020/11/26 5:43 下午
  */
 @Data
-public class PaymentDTO implements Serializable {
+public class PaymentDTO<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
     private String serial;
+
+    private T model;
 
 
 }

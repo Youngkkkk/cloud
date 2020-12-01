@@ -49,7 +49,9 @@ public class PaymentController {
     public PaymentDTO get(@PathVariable("id") Long id) {
         Payment payment = iPaymentService.getById(id);
         log.info("serverPort:{}", serverPort);
-        return BeanHelperUtil.convert(payment, new PaymentDTO());
+        PaymentDTO paymentDTO = BeanHelperUtil.convert(payment, new PaymentDTO());
+        paymentDTO.setModel(serverPort);
+        return paymentDTO;
     }
 
     @PostMapping("removeById")

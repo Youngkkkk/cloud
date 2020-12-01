@@ -10,10 +10,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class OrderMan80 {
+public class EurekaOrderMan80 {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderMan80.class, args);
+        SpringApplication.run(EurekaOrderMan80.class, args);
     }
 
 }
