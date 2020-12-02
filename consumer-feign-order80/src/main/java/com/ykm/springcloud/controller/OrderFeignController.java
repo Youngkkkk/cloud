@@ -23,7 +23,11 @@ public class OrderFeignController {
     @GetMapping("consumer/payment/get/{id}")
     public PaymentDTO getPayment(@PathVariable("id") Long id) {
         return paymentFeignService.getPayment(id);
+    }
 
+    @GetMapping("consumer/payment/feign/timeout")
+    public String paymentTimeout(){
+        return paymentFeignService.paymentTimeout();
     }
 
 }

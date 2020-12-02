@@ -14,6 +14,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * <p>
  * 前端控制器
@@ -43,7 +46,6 @@ public class PaymentController {
     @GetMapping("get/{id}")
     @ApiOperation("根据id查询")
     public PaymentDTO get(@PathVariable("id") Long id) {
-        IRule
         Payment payment = iPaymentService.getById(id);
         log.info("serverPort:{}", serverPort);
         PaymentDTO paymentDTO = BeanHelperUtil.convert(payment, new PaymentDTO());
@@ -55,6 +57,16 @@ public class PaymentController {
     @ApiOperation("根据id删除")
     public boolean removeById(Integer id) {
         return iPaymentService.removeById(id);
+    }
+
+    @GetMapping("feign/timeout")
+    public String paymentFeignTimeout(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 
 }

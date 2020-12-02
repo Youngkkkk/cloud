@@ -2,18 +2,18 @@ package com.ykm.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author ykm
- * @date 2020/11/26 4:09 下午
+ * @date 2020/12/1 8:27 下午
  */
 @SpringBootApplication
-@EnableDiscoveryClient
-public class EurekaOrderMan80 {
+@EnableFeignClients
+public class FeignOrderMain80 {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaOrderMan80.class, args);
+        SpringApplication.run(FeignOrderMain80.class, args);
     }
 
 }
