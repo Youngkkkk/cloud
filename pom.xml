@@ -19,6 +19,7 @@
         <module>provider-payment-consul-8006</module>
         <module>consumer-consul-order80</module>
         <module>consumer-feign-order80</module>
+        <module>provide-hystrix-payment-8001</module>
     </modules>
     <packaging>pom</packaging>
 

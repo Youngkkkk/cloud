@@ -1,0 +1,55 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db2019?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 12345678
+
+eureka:
+  instance:
+    instance-id: payment8001
+    prefer-ip-address: true
+    # eureka客户端向服务器端服务器端发送心跳的时间间隔，默认30秒
+    lease-renewal-interval-in-seconds: 1
+    # eureka服务端收到最后一次心跳等待时间上线，默认90秒，超时剔除
+    lease-expiration-duration-in-seconds: 2
+  client:
+    # false表示不向注册中心注册自己
+    register-with-eureka: true
+    # false表示自己就是注册中心，我的职责就是维护实例，并不需要去检索服务
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+      # defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 0
+      # 删除后
+      logic-delete-value: 1
+      # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以不用在实体类加上@TableLogic注解)
+      logic-delete-field: flag
+
+knife4j:
+  enable: false
+  basic:
+    enable: false
+    username: admin
+    password: 123456
+  production: false
