@@ -1,7 +1,6 @@
 package com.ykm.springcloud.bs.pay.controller;
 
 
-import com.netflix.loadbalancer.IRule;
 import com.ykm.springcloud.bs.pay.entity.Payment;
 import com.ykm.springcloud.bs.pay.service.IPaymentService;
 import com.ykm.springcloud.dto.PaymentDTO;
@@ -10,12 +9,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <p>
@@ -57,6 +54,11 @@ public class PaymentController {
     @ApiOperation("根据id删除")
     public boolean removeById(Integer id) {
         return iPaymentService.removeById(id);
+    }
+
+    @GetMapping("/lb")
+    public String getPaymentLB() {
+        return serverPort;
     }
 
     @GetMapping("feign/timeout")
