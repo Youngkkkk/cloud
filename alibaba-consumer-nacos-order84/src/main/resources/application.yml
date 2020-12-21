@@ -1,8 +1,8 @@
 server:
-  port: 8401
+  port: 84
 spring:
   application:
-    name: cloudalibaba-sentinel-service
+    name: nacos-order-consumer
   cloud:
     nacos:
       discovery:
@@ -11,14 +11,6 @@ spring:
       transport:
         dashboard: localhost:8858
         port: 8719
-      datasource:
-        ds1:
-          nacos:
-            server-addr: localhost:8848
-            dataId: cloudalibaba-sentinel-service
-            groupId: DEFAULT_GROUP
-            data-type: json
-            rule-type: flow
 
 service-url:
   nacos-user-service: http://nacos-payment-provider
@@ -28,3 +20,6 @@ management:
     web:
       exposure:
         include: '*'
+feign:
+  sentinel:
+    enabled: true
