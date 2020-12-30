@@ -1,0 +1,39 @@
+server:
+  port: 2001
+spring:
+  application:
+    name: seata-order-service
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db2019?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 12345678
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    alibaba:
+      seata:
+        enabled: true
+          application-id: seata-order-service
+          tx-service-group: my_test_tx_group    #此处配置自定义的seata事务分组名称
+          enable-auto-data-source-proxy: true    #开启数据库代理
+          config:
+            type: nacos
+            nacos:
+              namespace:
+              server-addr: localhost:8848
+              group: SEATA_GROUP
+              username: nacos
+              password: nacos
+          registry:
+            type: nacos
+            nacos:
+              application: seata-server
+              server-addr: localhost:8848
+              namespace:
+              username: nacos
+              password: nacos
